@@ -35,7 +35,6 @@ def chunks(
         start = n * chunk_size
         end = start + chunk_size
         chunk = pc[start:end, :]
-
         alpha = fc_sdf_map(chunk)
 
         alpha = alpha.squeeze(dim=-1)

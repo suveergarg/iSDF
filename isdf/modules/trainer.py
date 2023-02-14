@@ -1522,6 +1522,22 @@ class Trainer():
             return scene
         return None
 
+    def forward(self, control_points):
+        batch = control_points.shape[0]
+        time = control_points.shape[1]
+
+        control_points = control_points.view(-1, 3)
+        
+        with torch.set_grad_enabled(False):
+            sdf = fc_map.chunks(
+                control_points,
+                self.chunk_size,
+                self.sdf_map,
+            )
+            sdf = sdf.view(batch, time)
+        
+        return sdf
+        
     def get_sdf_grid(self, grid_pc = None, dim = None):
         
         if torch.is_tensor(grid_pc):
