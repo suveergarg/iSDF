@@ -1522,7 +1522,7 @@ class Trainer():
             return scene
         return None
 
-    def forward(self, control_points):
+    def compute_distances(self, control_points):
         batch = control_points.shape[0]
         time = control_points.shape[1]
 
@@ -1537,6 +1537,10 @@ class Trainer():
             sdf = sdf.view(batch, time)
         
         return sdf
+    
+    def forward(self, control_points):
+        sdf = self.compute_distances(control_points)
+        return torch.min(sdf, axis = 1)
         
     def get_sdf_grid(self, grid_pc = None, dim = None):
         
