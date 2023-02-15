@@ -1543,7 +1543,7 @@ class Trainer():
     
     def forward(self, control_points):
         sdf = self.compute_distances(control_points)
-        return torch.min(sdf, axis = 1)
+        return torch.min(sdf, axis = 1)[0]
         
     def get_sdf_grid(self, grid_pc = None, dim = None):
         
