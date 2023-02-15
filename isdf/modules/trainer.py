@@ -2222,7 +2222,7 @@ class Trainer():
         z_min = np.min(pc[:, 2])
         z_max = np.max(pc[:, 2])
         
-        dim = 100
+        dim = 50
         x = torch.linspace(x_min,x_max, steps=dim, device='cpu')
         y = torch.linspace(y_min,y_max, steps=dim, device='cpu')
         z = torch.linspace(z_min-0.1, z_max+0.3, steps=dim, device='cpu')
