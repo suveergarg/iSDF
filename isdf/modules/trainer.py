@@ -2212,7 +2212,7 @@ class Trainer():
             len(self.scene_dataset), grad_fn=self.grad_fn,
         )
 
-    def visualization(self, pc):
+    def visualize(self, pc):
         x_min = np.min(pc[:, 0])
         x_max = np.max(pc[:, 0])
 
