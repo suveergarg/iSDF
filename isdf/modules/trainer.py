@@ -2211,3 +2211,39 @@ class Trainer():
             self.gt_sdf_interp, self.eval_pts_root,
             len(self.scene_dataset), grad_fn=self.grad_fn,
         )
+
+    def visualization(self, pc):
+        x_min = np.min(pc[:, 0])
+        x_max = np.max(pc[:, 0])
+
+        y_min = np.min(pc[:, 1])
+        y_max = np.max(pc[:, 1])
+
+        z_min = np.min(pc[:, 2])
+        z_max = np.max(pc[:, 2])
+        
+        dim = 100
+        x = torch.linspace(x_min,x_max, steps=dim, device='cpu')
+        y = torch.linspace(y_min,y_max, steps=dim, device='cpu')
+        z = torch.linspace(z_min-0.1, z_max+0.3, steps=dim, device='cpu')
+
+        grid = torch.meshgrid(x, y, z)
+        
+        grid_3d = torch.cat(
+        (grid[0][..., None],
+         grid[1][..., None],
+         grid[2][..., None]), dim=3
+        )
+
+        sdf = self.get_sdf_grid(grid_3d, dim)
+        sdf_mesh = draw3D.draw_mesh(
+            sdf,
+            self.scene_scale_np,
+            self.bounds_transform_np,
+            color_by="none",
+        )
+
+        
+        mesh = sdf_mesh.as_open3d
+        mesh.compute_vertex_normals()
+        o3d.visualization.draw_geometries([mesh])
