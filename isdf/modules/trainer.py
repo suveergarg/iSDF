@@ -2243,7 +2243,10 @@ class Trainer():
             color_by="none",
         )
 
-        
+        pcd = o3d.geometry.PointCloud()
+        pcd.points = o3d.utility.Vector3dVector(pc)
+        o3d.visualization.draw_geometries([pcd])
+
         mesh = sdf_mesh.as_open3d
         mesh.compute_vertex_normals()
         o3d.visualization.draw_geometries([mesh])
