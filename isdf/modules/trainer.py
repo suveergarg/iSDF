@@ -71,7 +71,7 @@ class Trainer():
         self.set_params()
         self.set_cam()
         self.set_directions()
-        self.load_data()
+        #self.load_data()
 
         # scene params for visualisation
         self.scene_center = None
