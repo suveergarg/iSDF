@@ -2225,7 +2225,7 @@ class Trainer():
         dim = 50
         x = torch.linspace(x_min,x_max, steps=dim, device='cpu')
         y = torch.linspace(y_min,y_max, steps=dim, device='cpu')
-        z = torch.linspace(0.0, 1, steps=dim, device='cpu')
+        z = torch.linspace(z_min, z_max+0.2, steps=dim, device='cpu')
 
         grid = torch.meshgrid(x, y, z)
         
