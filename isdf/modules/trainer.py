@@ -1537,7 +1537,7 @@ class Trainer():
                 self.chunk_size,
                 self.sdf_map,
             )
-            sdf = sdf.view(batch, time)
+            sdf = sdf.reshape(batch, time)
         
         return sdf
     
