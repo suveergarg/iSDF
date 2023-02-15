@@ -72,6 +72,8 @@ class Trainer():
         self.set_cam()
         self.set_directions()
         #self.load_data()
+        self.up = np.array([0., 0., 1.])
+
 
         # scene params for visualisation
         self.scene_center = None
@@ -81,9 +83,10 @@ class Trainer():
         if self.gt_scene:
             scene_mesh = trimesh.exchange.load.load(
                 self.scene_file, process=False)
-            self.set_scene_properties(scene_mesh)
+            #self.set_scene_properties(scene_mesh)
         if self.dataset_format == "realsense_franka_offline":
             self.set_scene_properties()
+            #pass
 
         self.load_networks()
         if chkpt_load_file is not None:
