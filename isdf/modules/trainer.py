@@ -450,7 +450,10 @@ class Trainer():
         checkpoint = torch.load(checkpoint_load_file)
         self.sdf_map.load_state_dict(checkpoint["model_state_dict"])
         # self.optimiser.load_state_dict(checkpoint["optimizer_state_dict"])
-
+    
+    def save_checkpoint(self):
+        torch.save(self.sdf_map.state_dict(), 'isdf_weights.pt')
+    
     def load_gt_sdf(self):
         sdf_grid = np.load(self.gt_sdf_file)
         if self.dataset_format == "ScanNet":
