@@ -726,7 +726,7 @@ class Trainer():
         depth = data['depth']
         norm_batch = np.asarray(pcd.normals)
 
-        size = 1000
+        size = min(1000, depth.shape[0])
         random_index = torch.tensor(np.random.choice(depth.shape[0], size = size, replace = False), dtype = torch.long)
 
         depth_sample = torch.tensor(depth, dtype=torch.float)
