@@ -448,7 +448,8 @@ class Trainer():
 
     def load_checkpoint(self, checkpoint_load_file):
         checkpoint = torch.load(checkpoint_load_file)
-        self.sdf_map.load_state_dict(checkpoint["model_state_dict"])
+        #self.sdf_map.load_state_dict(checkpoint["model_state_dict"])
+        self.sdf_map.load_state_dict(checkpoint)
         # self.optimiser.load_state_dict(checkpoint["optimizer_state_dict"])
     
     def save_checkpoint(self):
