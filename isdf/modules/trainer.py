@@ -2217,14 +2217,24 @@ class Trainer():
         )
 
     def visualize(self, pc):
-        x_min = np.min(pc[:, 0])
-        x_max = np.max(pc[:, 0])
+        #x_min = np.min(pc[:, 0])
+        #x_max = np.max(pc[:, 0])
 
-        y_min = np.min(pc[:, 1])
-        y_max = np.max(pc[:, 1])
+        #y_min = np.min(pc[:, 1])
+        #y_max = np.max(pc[:, 1])
 
-        z_min = np.min(pc[:, 2])
-        z_max = np.max(pc[:, 2])
+        #z_min = np.min(pc[:, 2])
+        #z_max = np.max(pc[:, 2])
+        
+        x_min = self.x_min
+        x_max = self.x_max
+
+        y_min = self.y_min
+        y_max = self.y_max
+
+        z_min = self.z_min
+        z_max = self.z_max
+
         
         dim = 50
         x = torch.linspace(x_min,x_max, steps=dim, device='cpu')
@@ -2254,3 +2264,12 @@ class Trainer():
         mesh = sdf_mesh.as_open3d
         mesh.compute_vertex_normals()
         o3d.visualization.draw_geometries([mesh])
+
+def set_grid(self, x_min, x_max, y_min, y_max):
+
+    self.x_min = x_min
+    self.x_max = x_max
+    self.y_max = y_max
+    self.y_min = y_min
+    self.z_max = 1
+    self.z_min = 0.1
