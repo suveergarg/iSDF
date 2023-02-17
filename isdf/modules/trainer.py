@@ -2265,11 +2265,11 @@ class Trainer():
         mesh.compute_vertex_normals()
         o3d.visualization.draw_geometries([mesh])
 
-def set_grid(self, x_min, x_max, y_min, y_max):
+    def set_grid(self, x_min, x_max, y_min, y_max):
 
-    self.x_min = x_min
-    self.x_max = x_max
-    self.y_max = y_max
-    self.y_min = y_min
-    self.z_max = 1
-    self.z_min = 0.1
+        self.x_min = x_min
+        self.x_max = x_max
+        self.y_max = y_max
+        self.y_min = y_min
+        self.z_max = 1
+        self.z_min = 0.1
