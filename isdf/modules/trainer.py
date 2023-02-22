@@ -431,8 +431,8 @@ class Trainer():
         positional_encoding = embedding.PostionalEncoding(
             min_deg=0,
             max_deg=self.n_embed_funcs,
-            scale=self.scale_input,
-            transform=self.inv_bounds_transform,
+            #scale=self.scale_input,
+            #transform=self.inv_bounds_transform,
         )
 
         self.sdf_map = fc_map.SDFMap(
