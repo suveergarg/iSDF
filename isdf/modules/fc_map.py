@@ -105,6 +105,7 @@ class SDFMap(nn.Module):
         fc1 = self.in_layer(x_pe)
         print("2")
         fc1 = self.mid1(fc1)
+        print("2a")
         fc1 = torch.cat((fc1, x_pe), dim=-1)
         print("3")
         fc1 = self.cat_layer(fc1)
