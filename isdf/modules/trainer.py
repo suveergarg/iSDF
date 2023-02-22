@@ -91,8 +91,8 @@ class Trainer():
         self.load_networks()
         if chkpt_load_file is not None:
             self.load_checkpoint(chkpt_load_file)
-            self.set_data_parallel()
-            
+            #self.set_data_parallel()
+
         self.sdf_map.train()
 
         # for evaluation
