@@ -433,12 +433,12 @@ class Trainer():
             transform=self.inv_bounds_transform,
         )
 
-        self.sdf_map = fc_map.SDFMap(
+        self.sdf_map = torch.nn.DataParallel(fc_map.SDFMap(
             positional_encoding,
             hidden_size=self.hidden_feature_size,
             hidden_layers_block=self.hidden_layers_block,
             scale_output=self.scale_output,
-        ).to(self.device)
+        )).to(self.device)
 
         self.optimiser = optim.AdamW(
             self.sdf_map.parameters(),
@@ -1533,11 +1533,11 @@ class Trainer():
         batch = control_points.shape[0]
         time = control_points.shape[1]
 
-        control_points = control_points.reshape(-1, 3)
+        #control_points = control_points.reshape(-1, 3)
         
         with torch.set_grad_enabled(False):
-            #sdf = self.sdf_map(control_points)
-            
+            sdf = self.sdf_map(control_points)
+            '''
             sdf = fc_map.chunks(
                 control_points,
                 self.chunk_size,
@@ -1545,7 +1545,7 @@ class Trainer():
             )
             
             sdf = sdf.reshape(batch, time)
-        
+            '''
         return sdf
     
     def forward(self, control_points):
