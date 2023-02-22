@@ -440,7 +440,7 @@ class Trainer():
             hidden_size=self.hidden_feature_size,
             hidden_layers_block=self.hidden_layers_block,
             scale_output=self.scale_output,
-        )#.to(self.device)
+        ).to(self.device)
 
         self.optimiser = optim.AdamW(
             self.sdf_map.parameters(),
