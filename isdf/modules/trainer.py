@@ -61,7 +61,7 @@ class Trainer():
 
         self.grid_dim = grid_dim
         self.new_grid_dim = None
-        self.chunk_size = 300000
+        self.chunk_size = 700000
 
         with open(config_file) as json_file:
             self.config = json.load(json_file)
