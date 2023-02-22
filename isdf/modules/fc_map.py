@@ -98,10 +98,12 @@ class SDFMap(nn.Module):
 
     def forward(self, x, noise_std=None, pe_mask=None, sdf1=None):
         x_pe = self.positional_encoding(x)
+        print(">>>>>>>>>>>>>>>>")
         if pe_mask is not None:
             x_pe = torch.mul(x_pe, pe_mask)
 
         fc1 = self.in_layer(x_pe)
+
         fc2 = self.mid1(fc1)
         fc2_x = torch.cat((fc2, x_pe), dim=-1)
         fc3 = self.cat_layer(fc2_x)
