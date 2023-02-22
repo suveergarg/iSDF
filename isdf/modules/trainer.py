@@ -1539,7 +1539,7 @@ class Trainer():
         batch = control_points.shape[0]
         time = control_points.shape[1]
 
-        #control_points = control_points.reshape(-1, 3)
+        control_points = control_points.reshape(-1, 3)
         
         with torch.set_grad_enabled(False):
             #sdf = self.sdf_map(control_points)
@@ -1550,7 +1550,7 @@ class Trainer():
                 self.sdf_map,
             )
             
-            #sdf = sdf.reshape(batch, time)
+            sdf = sdf.reshape(batch, time)
             
         return sdf
     
