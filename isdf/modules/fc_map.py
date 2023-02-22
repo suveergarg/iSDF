@@ -104,19 +104,19 @@ class SDFMap(nn.Module):
 
         fc1 = self.in_layer(x_pe)
         print("2")
-        fc2 = self.mid1(fc1)
-        fc2_x = torch.cat((fc2, x_pe), dim=-1)
+        fc1 = self.mid1(fc1)
+        fc1 = torch.cat((fc1, x_pe), dim=-1)
         print("3")
-        fc3 = self.cat_layer(fc2_x)
+        fc1 = self.cat_layer(fc1)
         print("4")
-        fc4 = self.mid2(fc3)
-        raw = self.out_alpha(fc4)
+        fc1 = self.mid2(fc1)
+        fc1 = self.out_alpha(fc1)
         print("5")
         '''
         if noise_std is not None:
             noise = torch.randn(raw.shape, device=x.device) * noise_std
             raw = raw + noise
         '''
-        alpha = raw * self.scale_output
+        fc1 = fc1 * self.scale_output
 
-        return alpha.squeeze(-1)
+        return fc1.squeeze(-1)
