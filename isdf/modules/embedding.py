@@ -13,8 +13,8 @@ def scale_input(tensor, transform=None, scale=None):
     if transform is not None:
         t_shape = tensor.shape
         tensor = geometry.transform.transform_3D_grid(
-            tensor.view(-1, 3), transform=transform)
-        tensor = tensor.view(t_shape)
+            tensor.reshape(-1, 3), transform=transform)
+        tensor = tensor.reshape(t_shape)
 
     if scale is not None:
         tensor = tensor * scale
