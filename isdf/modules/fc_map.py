@@ -38,10 +38,10 @@ def chunks(
         since = time.time()
         
         chunk = pc[start:end, :]
-        print("Time for Chunking :", time.time()-since)
+        #print("Time for Chunking :", time.time()-since)
         since = time.time()
         alpha = fc_sdf_map(chunk)
-        print("Time for Forward pass :", time.time() - since)
+        #print("Time for Forward pass :", time.time() - since)
 
         alpha = alpha.squeeze(dim=-1)
         if to_cpu:
