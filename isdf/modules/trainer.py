@@ -1539,11 +1539,11 @@ class Trainer():
         batch = control_points.shape[0]
         time = control_points.shape[1]
 
-        #control_points = control_points.reshape(-1, 3)
+        control_points = control_points.reshape(-1, 3)
         
         with torch.set_grad_enabled(False):
-            sdf = self.sdf_map(control_points)
-            '''
+            #sdf = self.sdf_map(control_points)
+            
             sdf = fc_map.chunks(
                 control_points,
                 self.chunk_size,
@@ -1551,7 +1551,7 @@ class Trainer():
             )
             
             sdf = sdf.reshape(batch, time)
-            '''
+            
         return sdf
     
     def forward(self, control_points):
