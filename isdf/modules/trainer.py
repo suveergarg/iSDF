@@ -91,6 +91,8 @@ class Trainer():
         self.load_networks()
         if chkpt_load_file is not None:
             self.load_checkpoint(chkpt_load_file)
+            self.set_data_parallel()
+            
         self.sdf_map.train()
 
         # for evaluation
@@ -433,18 +435,21 @@ class Trainer():
             transform=self.inv_bounds_transform,
         )
 
-        self.sdf_map = torch.nn.DataParallel(fc_map.SDFMap(
+        self.sdf_map = fc_map.SDFMap(
             positional_encoding,
             hidden_size=self.hidden_feature_size,
             hidden_layers_block=self.hidden_layers_block,
             scale_output=self.scale_output,
-        )).to(self.device)
+        )#.to(self.device)
 
         self.optimiser = optim.AdamW(
             self.sdf_map.parameters(),
             lr=self.learning_rate,
             weight_decay=self.weight_decay
         )
+
+    def set_data_parallel(self):
+        self.sdf_map = torch.nn.DataParallel(self.sdf_map).to(self.device)
 
     def load_checkpoint(self, checkpoint_load_file):
         checkpoint = torch.load(checkpoint_load_file)
