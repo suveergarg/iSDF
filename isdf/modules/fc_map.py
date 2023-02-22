@@ -34,7 +34,7 @@ def chunks(
     alphas = []
     for n in range(n_chunks):
         start = n * chunk_size
-        end = start + chunk_size
+        end = min(n_pts, start + chunk_size)
         since = time.time()
         
         chunk = pc[start:end, :]

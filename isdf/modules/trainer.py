@@ -61,7 +61,7 @@ class Trainer():
 
         self.grid_dim = grid_dim
         self.new_grid_dim = None
-        self.chunk_size = 300000
+        self.chunk_size = 10000
 
         with open(config_file) as json_file:
             self.config = json.load(json_file)
@@ -1539,7 +1539,7 @@ class Trainer():
         batch = control_points.shape[0]
         time = control_points.shape[1]
 
-        control_points = control_points.reshape(-1, 3)
+        #control_points = control_points.reshape(-1, 3)
         
         with torch.set_grad_enabled(False):
             #sdf = self.sdf_map(control_points)
@@ -1550,7 +1550,7 @@ class Trainer():
                 self.sdf_map,
             )
             
-            sdf = sdf.reshape(batch, time)
+            #sdf = sdf.reshape(batch, time)
             
         return sdf
     
