@@ -48,7 +48,7 @@ def chunks(
             alpha = alpha.cpu()
         alphas.append(alpha)
 
-    alphas = torch.cat(alphas, dim=0)
+    alphas = torch.cat(alphas, dim=-1)
 
     return alphas
 
