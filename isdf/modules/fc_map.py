@@ -7,7 +7,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.autograd import grad
-
+import time
 
 def gradient(inputs, outputs):
     d_points = torch.ones_like(
@@ -34,8 +34,13 @@ def chunks(
     for n in range(n_chunks):
         start = n * chunk_size
         end = start + chunk_size
+        since = time.time()
+        
         chunk = pc[start:end, :]
+        print("Time for Chunking :", time.time()-since)
+        since = time.time()
         alpha = fc_sdf_map(chunk)
+        print("Time for Forward pass :", time.time() - since)
 
         alpha = alpha.squeeze(dim=-1)
         if to_cpu:
