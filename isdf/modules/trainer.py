@@ -440,7 +440,7 @@ class Trainer():
             hidden_size=self.hidden_feature_size,
             hidden_layers_block=self.hidden_layers_block,
             scale_output=self.scale_output,
-        ).to(self.device)
+        )#.to(self.device)
 
         self.optimiser = optim.AdamW(
             self.sdf_map.parameters(),
@@ -455,6 +455,7 @@ class Trainer():
         checkpoint = torch.load(checkpoint_load_file)
         #self.sdf_map.load_state_dict(checkpoint["model_state_dict"])
         self.sdf_map.load_state_dict(checkpoint)
+        self.sdf_map = self.sdf_map.float().to(self.device) 
         # self.optimiser.load_state_dict(checkpoint["optimizer_state_dict"])
     
     def save_checkpoint(self):

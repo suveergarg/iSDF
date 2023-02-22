@@ -29,6 +29,7 @@ def chunks(
     to_cpu=False,
 ):
     n_pts = pc.shape[0]
+    
     n_chunks = int(np.ceil(n_pts / chunk_size))
     alphas = []
     for n in range(n_chunks):
