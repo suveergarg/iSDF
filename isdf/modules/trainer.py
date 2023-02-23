@@ -102,6 +102,13 @@ class Trainer():
         self.cosSim = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
         self.nfid = 0
 
+        self.x_min = -0.5371591
+        self.x_max = 1.187896
+        self.y_min = -1.0606133
+        self.y_max = 0.92624557
+        self.z_min = 0.1
+        self.z_max = 1.0
+
     # Init functions ---------------------------------------
 
     def get_latest_frame_id(self):
